@@ -1,0 +1,7 @@
+﻿A hash can be viewed as a dictionary. As a result, hashing
+commonly appears when processing with strings. Problem
+1.10: You are required to write a method that takes two
+text documents: an anonymous letter L and text from a
+magazine M. Your method is to return true if L can be
+written using M and false otherwise. (If a letter appears
+k times in L, it must appear at least k times in M.)

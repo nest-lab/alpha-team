@@ -1,0 +1,41 @@
+Functional programming is an alternative programming paradigm to the currently more popular and
+common, object-oriented programming.
+There are several key concepts that differentiate it from the other programming paradigms. Let’s start by
+providing definitions for the most common ones, so that we will recognize them when we see them applied
+throughout the article.
+The basic building blocks of functional programs are pure functions. They are defined by the following two
+properties:
+• Their result depends solely on the arguments passed to it. No internal or external state affects it.
+• They do not cause any side effects. The number of times they are called will not change the program
+behavior.
+Because of these properties, a function call can be safely replaced with its result, e.g. to cache the results
+of computationally intensive functions for each combination of its arguments (technique known as
+memoization).
+Pure functions lend themselves well to function composition.
+This is a process of combining two or more functions into a new function, which returns the same result as
+if all its composing functions were called in a sequence. If ComposedFn is a function composition of Fn1
+and Fn2, then the following assertion will always pass:
+Assert.That(ComposedFn(x), Is.EqualTo(Fn2(Fn1(x))));
+Composition is an important part of making functions reusable.
+Having functions as arguments to other functions can further increase their reusability. Such higher-order
+functions can act as generic helpers, which apply another function passed as argument multiple times, e.g.
+on all items of an array:
+Array.Exists(persons, IsMinor);
+In the above code, IsMinor is a function, defined elsewhere. For this to work, the language must support
+first-class functions, i.e. allow functions to be used as first-class language constructs just like value literals.
+Data is always represented with immutable objects, i.e. objects that cannot change their state after they
+have been initially created. Whenever a value changes, a new object must be created instead of modifying
+the existing one. Because all objects are guaranteed to not change, they are inherently thread-safe, i.e. they
+can be safely used in multithreaded programs with no threat of race conditions.
+As a direct consequence of functions being pure and objects being immutable, there is no shared state in
+functional programs.
+Functions can act only based on their arguments, which they cannot change and therewith, affect other
+functions receiving the same arguments. The only way they can affect the rest of the program is through
+10 | DNC MAGAZINE 5TH ANNIVERSARY ISSUE (JULY-AUG 2017)
+the result they return, which will be passed on as arguments to other functions.
+This prevents any kind of hidden cross-interaction between the functions, making them safe to run in any
+order or even in parallel, unless one function directly depends on the result of the other.
+With these basic building blocks, functional programs end up being more declarative than imperative, i.e.
+instead of describing how to calculate the result, the programmer rather describes what to calculate.
+The following two functions that convert the case of an array of strings to lower case, clearly demonstrate
+the difference between the two approaches:
